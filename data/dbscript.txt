@@ -1,14 +1,45 @@
 # Database 생성
+# root 계정으로 생성
+# 비밀번호: maria
 mysql -u root –p
+
+# DB 보기
 show databases;
+
+# mysql 데이터베이스 선택
 use mysql;
+
+# python_db라는 이름의 데이터베이스 만들기
 create database python_db;
+
+# 파이썬 사용자 계정 만들기
+# 아이디: python, 비밀번호: python
 create user 'python'@'%' identified by 'python';
+
+# 모든 권한 받기
+    # grant: 권한 설정 명령어
+    # python_db.*: 
+        # python_db라는 데이터베이스의 모든 테이블에 대해
+    # all privileges: 
+        # 모든 권한(SELECT, INSERT, UPDATE, DELETE, CREATE 등) 부여
+    # 'python'@'%': 
+        # 'python': 사용자 'python'이 
+        # %: 어느 IP에서든 접속 가능하게 함함
 grant all privileges on python_db.* to 'python'@'%';
+
+# MySQL은 성능 때문에 권한 정보를 메모리에 올려두고 사용하기에 
+# 사용자 권한이 바뀌어도 즉시 반영 안될 수 있음
+# 그래서 메모리에 있는 권한 정보를 
+# 디스크와 동기화 시키는 명령어(flush privileges;) 사용
 flush privileges;
+
+# user 계정 정보 테이블에서 user와 host 정보 보기
 select user, host from user;
+
+# python_db 나가기
 exit;
 
+# python이라는 이름의 계정으로 로그인
 mysql -u python -p
 show grants for current_user;
 use python_db;
