@@ -7,7 +7,7 @@ import matplotlib.font_manager as fm
 import seaborn as sns
 
 data = pd.read_csv('data/data_draw_korea.csv')
-data = data.drop('Unnamed: 0', axis=1)
+data = data.drop('Unnamed: 0', axis=1) # 필요없는 컬럼 날리고
 plt.rc('font', family="Malgun Gothic")
 
 # 광역시도 이름을 인자로 받아서 인구수와 면적을 그려주는 함수
@@ -18,10 +18,10 @@ def show_pop_area(sido_name):
         st.error("❌ 해당 광역시도 데이터를 찾을 수 없습니다. 정확한 이름을 입력해주세요.")
         return
         
-    st.subheader(f"📊 {sido_name}의 DataFrame")
-    st.dataframe(sido_df)
+    st.subheader(f"📊 {sido_name}의 DataFrame") # 데이터프레임 서브 헤더
+    st.dataframe(sido_df) # 데이터프레임을 뿌려줌
 
-    st.subheader(f"📈 {sido_name}의 인구수 현황")
+    st.subheader(f"📈 {sido_name}의 인구수 현황") # 데이터프레임 서브 헤더
 
     fig, (axes1,axes2) = plt.subplots(nrows=2, ncols=1,figsize=(18, 12))
     pop_plot = sns.barplot(x='행정구역', y='인구수', data=sido_df.sort_values(by='인구수',ascending=False), ax=axes1,hue='행정구역')
@@ -29,7 +29,7 @@ def show_pop_area(sido_name):
     
     area_plot = sns.barplot(x='행정구역', y='면적', data=sido_df.sort_values(by='면적',ascending=False), ax=axes2,hue='행정구역')
     area_plot.set_title(f'{sido_name} 행정구역별 면적')
-    st.pyplot(fig)
+    st.pyplot(fig) # streamlit as st: 이거로 뿌려줌
 
 # ✅ Streamlit UI 구성
 st.title("📊 대한민국 광역시도 데이터 분석")
