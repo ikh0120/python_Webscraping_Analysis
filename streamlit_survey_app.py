@@ -5,7 +5,7 @@ import streamlit as st
 st.set_page_config(page_title="간단한 설문조사 앱", layout="centered")
 st.title("파이썬 학습자 설문조사")
 
-st.write("안녕하세요! 아래 항목에 응답해 주세요.")
+st.write("안녕하세요! 아래 항목에 응답해 주세요.") # 작은글자
 
 # 1. 이름과 학년
 name = st.text_input("이름을 입력하세요")
@@ -29,7 +29,7 @@ opinion = st.text_area("추가로 하고 싶은 말이 있다면 적어주세요
 # 제출 버튼
 if st.button("제출하기"):
     if name == "":
-        st.warning("이름을 입력해 주세요!")
+        st.warning("이름을 입력해 주세요!") # 입력안하면 이거 출력
     else:
         st.success("설문이 제출되었습니다! 감사합니다 🙌")
         st.subheader("제출 내용 요약")
